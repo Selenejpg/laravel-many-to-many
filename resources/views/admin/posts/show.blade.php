@@ -10,5 +10,13 @@
             nessuna categoria assegnata
         @endif   
         <p>{{$post->content}}</p>
+
+        <h3>Tags:</h3>
+        @forelse ($post->tags as $tag)
+            <span class="badge badge-pill" style="background-color: {{$tag->color}}">{{$tag->label}}</span>
+            
+        @empty
+            <h3>Non ci sono tag abbinati</h3>   
+        @endforelse
     </div>
 @endsection
