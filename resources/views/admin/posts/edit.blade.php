@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <form action="{{route('admin.posts.update', $post->id)}}" method="POST">
+    <form action="{{route('admin.posts.update', $post->id)}}" method="POST" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <div class="form-group">
@@ -27,7 +27,7 @@
         </div>
         <div class="form-group">
             <label for="image">Image</label>
-            <input type="url" class="form-control" id="image" placeholder="url immagine" name="image" value="{{old('image', $post->image)}}">
+            <input type="file" class="form-control-file" id="image" placeholder="url immagine" name="image" value="{{old('image', $post->image)}}">
         </div>
 
         <h3>Seleziona tags:</h3>

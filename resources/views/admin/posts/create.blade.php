@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <form action="{{route('admin.posts.store')}}" method="POST">
+    <form action="{{route('admin.posts.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="title">Titolo</label>
@@ -25,7 +25,7 @@
         </div>
         <div class="form-group">
             <label for="image">Image</label>
-            <input type="url" class="form-control" id="image" placeholder="url immagine" name="image">
+            <input type="file" class="form-control-file" id="image" placeholder="url immagine" name="image">
         </div>
 
         <hr>
