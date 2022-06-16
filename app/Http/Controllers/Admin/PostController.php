@@ -49,8 +49,8 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $post = new Post();
         $user = Auth::user();
+        $post = new Post();
 
         if (array_key_exists('image', $data)) {
             $image_url = Storage::put('post_images', $data['image']);
@@ -58,12 +58,13 @@ class PostController extends Controller
         }
 
         $post->fill($data);
-        $post->slug = Str::slug('$post->title', '-');
+        $post->slug = Str::slug($post->title, '-');
+        //dd($post);
         $post->save();
 
         if (array_key_exists('tags', $data)) $post->tags()->attach($data['tags']);
 
-        $mail = new CreatePostMail();
+        $mail = new CreatePostMail($post);
         Mail::to($user->email)->send($mail);
 
         return redirect()->route('admin.posts.index');
